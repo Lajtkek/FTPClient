@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace FTPClient.Common
 {
-    class Settings
+    class FTPHelper
     {
-        public static Settings Instance = new Settings();
+        public static FTPHelper Instance = new FTPHelper();
 
         public Uri serverUri;
         private NetworkCredential credentials;
-        private Settings()
+        private FTPHelper()
         {
 
         }
 
-        public bool TryCredentials(string server, string username, string password)
+        public List<string> GetDirectoryDetails(string server, string username, string password)
         {
             credentials = new NetworkCredential(username, password);
             serverUri = new Uri("ftp://" + server + "/");
@@ -32,14 +32,11 @@ namespace FTPClient.Common
                     using (StreamReader reader = new StreamReader(responseStream)) {
                         string lines = reader.ReadToEnd();
 
-                        var a = lines.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                        // todo convert to like list of shit
-                        var b = a;
+                        return lines.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                        
                     }
                 }
             }
-
-            return true;
         }
 
         public FtpWebRequest CreateRequest(string method)

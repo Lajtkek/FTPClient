@@ -1,14 +1,14 @@
 ﻿
-namespace FTPClient.Forms
+namespace FTPClient.Controls
 {
-    partial class Client
+    partial class DirectoryItem
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -21,39 +21,41 @@ namespace FTPClient.Forms
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.rootView = new FTPClient.Controls.DirectoryView();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // rootView
+            // label1
             // 
-            this.rootView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rootView.Location = new System.Drawing.Point(0, 0);
-            this.rootView.Name = "rootView";
-            this.rootView.Size = new System.Drawing.Size(702, 475);
-            this.rootView.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "label1";
             // 
-            // Client
+            // DirectoryItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 475);
-            this.Controls.Add(this.rootView);
-            this.Name = "Client";
-            this.Text = "Client";
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Controls.Add(this.label1);
+            this.Name = "DirectoryItem";
+            this.Size = new System.Drawing.Size(300, 24);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Controls.DirectoryView rootView;
+        private System.Windows.Forms.Label label1;
     }
 }

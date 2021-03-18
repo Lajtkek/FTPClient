@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FTPClient.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,15 @@ namespace FTPClient.Forms
 {
     public partial class Client : Form
     {
-        public Client()
+        public Client(List<string> directoryDetails)
         {
             InitializeComponent();
+
+            foreach (string item in directoryDetails)
+            {
+                DirectoryItem d = new DirectoryItem(item);
+                rootView.AddDirectoryItem(d);
+            }
         }
     }
 }
