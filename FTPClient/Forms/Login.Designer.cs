@@ -105,7 +105,7 @@ namespace FTPClient
             this.server_txt.Name = "server_txt";
             this.server_txt.Size = new System.Drawing.Size(181, 20);
             this.server_txt.TabIndex = 7;
-            this.server_txt.Text = "slonice.endora.cz";
+            this.server_txt.Text = "slonice.endora.cz/idk.4fan.cz/web";
             // 
             // label3
             // 

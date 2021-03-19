@@ -1,4 +1,5 @@
-﻿using FTPClient.Controls;
+﻿using FTPClient.Common;
+using FTPClient.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +20,7 @@ namespace FTPClient.Forms
 
             foreach (string item in directoryDetails)
             {
-                DirectoryItem d = new DirectoryItem(item);
+                DirectoryItem d = new DirectoryItem(FTPHelper.Instance.serverUri ,item);
                 rootView.AddDirectoryItem(d);
             }
         }

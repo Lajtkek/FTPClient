@@ -39,11 +39,41 @@ namespace FTPClient.Common
             }
         }
 
+        public long GetFileSize(Uri uri)
+        {
+            //try
+            //{
+            //    var a = uri;
+            //    var request = CreateRequest(WebRequestMethods.Ftp.GetFileSize);
+
+            //    FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+            //    long size = response.ContentLength;
+            //    response.Close();
+            //    return size;
+            //}
+            //catch (Exception e)
+            //{
+            //    return 0;
+            //}
+            return 0;
+        }
+
         public FtpWebRequest CreateRequest(string method)
         {
             //Todo check if valid metod (možná idk)
 
             var request = (FtpWebRequest)WebRequest.Create(serverUri);
+            request.Method = method;
+            request.Credentials = credentials;
+
+            return request;
+        }
+
+        public FtpWebRequest CreateRequest(string method, Uri uri)
+        {
+            //Todo check if valid metod (možná idk)
+
+            var request = (FtpWebRequest)WebRequest.Create(uri);
             request.Method = method;
             request.Credentials = credentials;
 
