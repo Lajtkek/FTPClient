@@ -31,17 +31,68 @@ namespace FTPClient.Controls
             long.TryParse(info[4], out size);
 
             int intType = int.Parse(info[1]);
-            isDirectory = intType != 2 && intType != 17 && intType != 4;
+            isDirectory = intType == 2 || intType == 17 || intType == 4;
 
-            label1.Text = name + "(" + (isDirectory ? (size + "b)") : "directory)");
+            file_name.Text = name;
+            if (isDirectory)
+                file_size.Hide();
+            else
+                file_size.Text = "(" + size + "b)";
+
+            //fileMenu.Visible = isDirectory;
+            //folder_menu.Visible = !isDirectory;
+            if (!isDirectory)
+            {
+                fileMenu.Show();
+                folder_menu.Hide();
+            }
+            else
+            {
+                fileMenu.Hide();
+                folder_menu.Show();
+            }
+            Size = new Size(300, 30);
         }
 
         private void DirectoryItem_MouseUp(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
-            {
-                Size = new Size(300, 80);
-            }
+            //if(e.Button == MouseButtons.Left)
+            //{
+            // TODO: REMOVE
+            //}
+        }
+
+        private void Expand_Click(object sender, EventArgs e)
+        {
+            if (Size.Height == 30)
+                Size = new Size(300, 100);
+            else
+                Size = new Size(300, 30);
+        }
+
+        private void delete_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rename_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void download_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openDir_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void renameDir_btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
