@@ -44,7 +44,7 @@ namespace FTPClient.Controls
             var directoryDetails = FTPHelper.Instance.GetDirectoryDetails(root);
             foreach (string item in directoryDetails)
             {
-                DirectoryItem d = new DirectoryItem(FTPHelper.Instance.serverUri, item);
+                DirectoryItem d = new DirectoryItem(root, item);
 
                 AddDirectoryItem(d);
             }
