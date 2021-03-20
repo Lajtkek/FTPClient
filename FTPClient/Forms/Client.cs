@@ -18,11 +18,9 @@ namespace FTPClient.Forms
         {
             InitializeComponent();
 
-            foreach (string item in directoryDetails)
-            {
-                DirectoryItem d = new DirectoryItem(FTPHelper.Instance.serverUri ,item);
-                rootView.AddDirectoryItem(d);
-            }
+            DirectoryView rootView = new DirectoryView(FTPHelper.Instance.serverUri);
+            rootView.Dock = DockStyle.Fill;
+            Controls.Add(rootView);
         }
     }
 }

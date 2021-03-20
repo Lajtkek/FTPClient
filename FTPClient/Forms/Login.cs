@@ -21,7 +21,8 @@ namespace FTPClient
 
         private void login_btn_Click(object sender, EventArgs e)
         {
-            var directoryDetails = FTPHelper.Instance.GetDirectoryDetails(server_txt.Text, username_txt.Text, password_txt.Text);
+            FTPHelper.Instance.SetCredentials(server_txt.Text, username_txt.Text, password_txt.Text);
+            var directoryDetails = FTPHelper.Instance.GetDirectoryDetails(new Uri("ftp://" + server_txt.Text + "/"));
             if (directoryDetails.Count > 0)
             {
                 Client c = new Client(directoryDetails);

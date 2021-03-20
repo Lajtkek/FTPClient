@@ -17,15 +17,14 @@ namespace FTPClient.Controls
         private string name;
         private long size = 0;
         private bool isDirectory;
-        public DirectoryItem()
-        {
-            InitializeComponent();
-        }
+
+        public event Action<Uri> openDirRequest;
 
         public DirectoryItem(Uri baseUri, string directoryLine)
         {
             InitializeComponent();
 
+            uri = baseUri;
             var info = directoryLine.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             name = info.Last();
             long.TryParse(info[4], out size);
@@ -87,7 +86,7 @@ namespace FTPClient.Controls
 
         private void openDir_btn_Click(object sender, EventArgs e)
         {
-
+            openDirRequest?.Invoke(new Uri(this.uri.ToString() + name));
         }
 
         private void renameDir_btn_Click(object sender, EventArgs e)

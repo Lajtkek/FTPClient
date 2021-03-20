@@ -29,31 +29,12 @@ namespace FTPClient.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.rootView = new FTPClient.Controls.DirectoryView();
-            this.SuspendLayout();
-            // 
-            // rootView
-            // 
-            this.rootView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rootView.Location = new System.Drawing.Point(0, 0);
-            this.rootView.Name = "rootView";
-            this.rootView.Size = new System.Drawing.Size(702, 475);
-            this.rootView.TabIndex = 0;
-            // 
-            // Client
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 475);
-            this.Controls.Add(this.rootView);
-            this.Name = "Client";
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Text = "Client";
-            this.ResumeLayout(false);
-
         }
 
         #endregion
-
-        private Controls.DirectoryView rootView;
     }
 }

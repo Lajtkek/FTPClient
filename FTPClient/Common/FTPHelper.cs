@@ -19,11 +19,14 @@ namespace FTPClient.Common
 
         }
 
-        public List<string> GetDirectoryDetails(string server, string username, string password)
+        public void SetCredentials(string server, string username, string password)
         {
             credentials = new NetworkCredential(username, password);
             serverUri = new Uri("ftp://" + server + "/");
-            var request = CreateRequest(WebRequestMethods.Ftp.ListDirectoryDetails);
+        }
+        public List<string> GetDirectoryDetails(Uri directoryUri)
+        {
+            var request = CreateRequest(WebRequestMethods.Ftp.ListDirectoryDetails, directoryUri);
 
             using (var response = (FtpWebResponse)request.GetResponse())
             {
