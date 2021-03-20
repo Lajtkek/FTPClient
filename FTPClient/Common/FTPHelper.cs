@@ -89,9 +89,29 @@ namespace FTPClient.Common
         public void DeleteFileFromFtp(Uri uri)
         {
             var request = CreateRequest(WebRequestMethods.Ftp.DeleteFile, uri);
-
+            request.UseBinary = false;
+            request.KeepAlive = false;
             var response = (FtpWebResponse)request.GetResponse();
             response.Close();
+        }
+
+        public void DownloadFileFTP(Uri fileUri, string downloadPath)
+        {
+            //downloadPath = System.IO.Path.GetDirectoryName(downloadPath);
+            var request = CreateRequest(WebRequestMethods.Ftp.DownloadFile, fileUri);
+
+            var filename = System.IO.Path.GetFileName(fileUri.LocalPath);
+
+            using (Stream ftpStream = request.GetResponse().GetResponseStream())
+            using (Stream fileStream = File.Create(downloadPath))
+            {
+                byte[] buffer = new byte[10240];
+                int read;
+                while ((read = ftpStream.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    fileStream.Write(buffer, 0, read);
+                }
+            }
         }
 
         public FtpWebRequest CreateRequest(string method)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,7 @@ namespace FTPClient.Controls
             long.TryParse(info[4], out size);
 
             int intType = int.Parse(info[1]);
-            isDirectory = intType == 2 || intType == 17 || intType == 4;
+            isDirectory = intType != 1; //intType == 2 || intType == 17 || intType == 4 || intType == 5;
 
             file_name.Text = name;
             if (isDirectory)
@@ -82,7 +83,15 @@ namespace FTPClient.Controls
 
         private void download_btn_Click(object sender, EventArgs e)
         {
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.FileName = name;
+            saveFileDialog1.Filter = "Any (.*)|*.*"; // Filter files by extension
 
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                FTPHelper.Instance.DownloadFileFTP(new Uri(uri.ToString() + "/" + name), saveFileDialog1.FileName);               
+            }
         }
 
         private void openDir_btn_Click(object sender, EventArgs e)
