@@ -71,7 +71,8 @@ namespace FTPClient.Controls
 
         private void delete_btn_Click(object sender, EventArgs e)
         {
-
+            FTPHelper.Instance.DeleteFileFromFtp(new Uri(uri.ToString() + "/" + name));
+            Dispose();
         }
 
         private void rename_btn_Click(object sender, EventArgs e)

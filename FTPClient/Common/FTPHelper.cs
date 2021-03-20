@@ -14,6 +14,7 @@ namespace FTPClient.Common
 
         public Uri serverUri;
         private NetworkCredential credentials;
+        public NetworkCredential Credentials => credentials;
         private FTPHelper()
         {
 
@@ -59,6 +60,38 @@ namespace FTPClient.Common
             //    return 0;
             //}
             return 0;
+        }
+
+
+        public void UploadFileToFtp(Uri uri, string filePath)
+        {
+            var fileName = System.IO.Path.GetFileName(filePath);
+            var request = CreateRequest(WebRequestMethods.Ftp.UploadFile,new Uri(uri.ToString() + "/" + fileName));
+
+            request.UsePassive = true;
+            request.UseBinary = true;
+            request.KeepAlive = false;
+
+            using (var fileStream = File.OpenRead(filePath))
+            {
+                using (var requestStream = request.GetRequestStream())
+                {
+                    fileStream.CopyTo(requestStream);
+                    requestStream.Close();
+                }
+            }
+
+            var response = (FtpWebResponse)request.GetResponse();
+            response.Close();
+        }
+
+
+        public void DeleteFileFromFtp(Uri uri)
+        {
+            var request = CreateRequest(WebRequestMethods.Ftp.DeleteFile, uri);
+
+            var response = (FtpWebResponse)request.GetResponse();
+            response.Close();
         }
 
         public FtpWebRequest CreateRequest(string method)

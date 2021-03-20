@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -38,6 +40,7 @@ namespace FTPClient.Controls
 
         private void RefreshDirectory()
         {
+            DirectoryItemHolder.Controls.Clear();
             var directoryDetails = FTPHelper.Instance.GetDirectoryDetails(root);
             foreach (string item in directoryDetails)
             {
@@ -71,6 +74,19 @@ namespace FTPClient.Controls
         {
             closed?.Invoke();
             Dispose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var filePath = openFileDialog.FileName;
+                    FTPHelper.Instance.UploadFileToFtp(root,filePath);
+                    RefreshDirectory();
+                }
+            }
         }
     }
 }
