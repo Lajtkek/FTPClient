@@ -1,4 +1,5 @@
 ﻿using FTPClient.Common;
+using FTPClient.Dialog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -88,7 +89,11 @@ namespace FTPClient.Controls
 
         private void rename_btn_Click(object sender, EventArgs e)
         {
-
+            SingleInputDialog sid = new SingleInputDialog("Nový název", "Přejmenovat");
+            if (sid.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(sid.OutputText);
+            }
         }
 
         private void download_btn_Click(object sender, EventArgs e)
@@ -111,7 +116,11 @@ namespace FTPClient.Controls
 
         private void renameDir_btn_Click(object sender, EventArgs e)
         {
-
+            SingleInputDialog sid = new SingleInputDialog("Nový název", "Přejmenovat");
+            if(sid.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(sid.OutputText);
+            }
         }
     }
 }

@@ -88,5 +88,10 @@ namespace FTPClient.Controls
                 }
             }
         }
+
+        private void dirCreate_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

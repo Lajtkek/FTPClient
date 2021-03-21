@@ -94,6 +94,12 @@
     <Compile Include="Controls\DirectoryItem.Designer.cs">
       <DependentUpon>DirectoryItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\SingleInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\SingleInputDialog.Designer.cs">
+      <DependentUpon>SingleInputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Client.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\DirectoryView.resx">
       <DependentUpon>DirectoryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialog\SingleInputDialog.resx">
+      <DependentUpon>SingleInputDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
