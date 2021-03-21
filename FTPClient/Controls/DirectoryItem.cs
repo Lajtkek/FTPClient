@@ -37,7 +37,7 @@ namespace FTPClient.Controls
             if (isDirectory)
                 file_size.Hide();
             else
-                file_size.Text = "(" + size + "b)";
+                file_size.Text = Helper.FormatBytes(size);
 
             //fileMenu.Visible = isDirectory;
             //folder_menu.Visible = !isDirectory;
@@ -72,8 +72,18 @@ namespace FTPClient.Controls
 
         private void delete_btn_Click(object sender, EventArgs e)
         {
-            FTPHelper.Instance.DeleteFileFromFtp(new Uri(uri.ToString() + "/" + name));
-            Dispose();
+            var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                FTPHelper.Instance.DeleteFileFromFtp(new Uri(uri.ToString() + "/" + name));
+                Dispose();
+            }
+            else
+            {
+                // If 'No', do something here.
+            }
         }
 
         private void rename_btn_Click(object sender, EventArgs e)
