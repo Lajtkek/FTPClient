@@ -85,6 +85,15 @@ namespace FTPClient.Common
             response.Close();
         }
 
+        public void RenameFile(Uri uri, string newName)
+        {
+            FtpWebRequest ftp = CreateRequest(WebRequestMethods.Ftp.Rename, uri);
+            //ftp.Method = WebRequestMethods.Ftp.Rename;
+
+            ftp.RenameTo = newName;
+
+            FtpWebResponse r = (FtpWebResponse)ftp.GetResponse();
+        }
 
         public void DeleteFileFromFtp(Uri uri)
         {
@@ -111,6 +120,26 @@ namespace FTPClient.Common
                 {
                     fileStream.Write(buffer, 0, read);
                 }
+            }
+        }
+
+        public void CreateDirectory(Uri uri, string name)
+        {
+            WebRequest request = CreateRequest(WebRequestMethods.Ftp.MakeDirectory, new Uri(uri.ToString() + "/" + name));
+
+            using (var resp = (FtpWebResponse)request.GetResponse())
+            {
+               
+            }
+        }
+
+        public void DeleteFolder(Uri uri)
+        {
+            WebRequest request = CreateRequest(WebRequestMethods.Ftp.RemoveDirectory, uri);
+
+            using (var resp = (FtpWebResponse)request.GetResponse())
+            {
+
             }
         }
 

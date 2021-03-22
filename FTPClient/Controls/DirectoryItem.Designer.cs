@@ -37,9 +37,9 @@ namespace FTPClient.Controls
             this.delete_btn = new System.Windows.Forms.Button();
             this.fileMenu = new System.Windows.Forms.Panel();
             this.folder_menu = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.renameDir_btn = new System.Windows.Forms.Button();
             this.openDir_btn = new System.Windows.Forms.Button();
+            this.deleteFolder_btn = new System.Windows.Forms.Button();
+            this.renameDir_btn = new System.Windows.Forms.Button();
             this.fileMenu.SuspendLayout();
             this.folder_menu.SuspendLayout();
             this.SuspendLayout();
@@ -118,31 +118,12 @@ namespace FTPClient.Controls
             // 
             this.folder_menu.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.folder_menu.Controls.Add(this.openDir_btn);
-            this.folder_menu.Controls.Add(this.button1);
+            this.folder_menu.Controls.Add(this.deleteFolder_btn);
             this.folder_menu.Controls.Add(this.renameDir_btn);
             this.folder_menu.Location = new System.Drawing.Point(3, 33);
             this.folder_menu.Name = "folder_menu";
             this.folder_menu.Size = new System.Drawing.Size(294, 62);
             this.folder_menu.TabIndex = 7;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(216, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // renameDir_btn
-            // 
-            this.renameDir_btn.Location = new System.Drawing.Point(89, 36);
-            this.renameDir_btn.Name = "renameDir_btn";
-            this.renameDir_btn.Size = new System.Drawing.Size(75, 23);
-            this.renameDir_btn.TabIndex = 4;
-            this.renameDir_btn.Text = "Rename";
-            this.renameDir_btn.UseVisualStyleBackColor = true;
-            this.renameDir_btn.Click += new System.EventHandler(this.renameDir_btn_Click);
             // 
             // openDir_btn
             // 
@@ -153,6 +134,26 @@ namespace FTPClient.Controls
             this.openDir_btn.Text = "Open";
             this.openDir_btn.UseVisualStyleBackColor = true;
             this.openDir_btn.Click += new System.EventHandler(this.openDir_btn_Click);
+            // 
+            // deleteFolder_btn
+            // 
+            this.deleteFolder_btn.Location = new System.Drawing.Point(216, 36);
+            this.deleteFolder_btn.Name = "deleteFolder_btn";
+            this.deleteFolder_btn.Size = new System.Drawing.Size(75, 23);
+            this.deleteFolder_btn.TabIndex = 5;
+            this.deleteFolder_btn.Text = "Delete";
+            this.deleteFolder_btn.UseVisualStyleBackColor = true;
+            this.deleteFolder_btn.Click += new System.EventHandler(this.deleteFolder_btn_Click);
+            // 
+            // renameDir_btn
+            // 
+            this.renameDir_btn.Location = new System.Drawing.Point(89, 36);
+            this.renameDir_btn.Name = "renameDir_btn";
+            this.renameDir_btn.Size = new System.Drawing.Size(75, 23);
+            this.renameDir_btn.TabIndex = 4;
+            this.renameDir_btn.Text = "Rename";
+            this.renameDir_btn.UseVisualStyleBackColor = true;
+            this.renameDir_btn.Click += new System.EventHandler(this.renameDir_btn_Click);
             // 
             // DirectoryItem
             // 
@@ -184,7 +185,7 @@ namespace FTPClient.Controls
         private System.Windows.Forms.Panel fileMenu;
         private System.Windows.Forms.Panel folder_menu;
         private System.Windows.Forms.Button openDir_btn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button deleteFolder_btn;
         private System.Windows.Forms.Button renameDir_btn;
     }
 }

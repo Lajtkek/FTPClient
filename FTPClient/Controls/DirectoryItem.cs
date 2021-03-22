@@ -92,7 +92,9 @@ namespace FTPClient.Controls
             SingleInputDialog sid = new SingleInputDialog("Nový název", "Přejmenovat");
             if (sid.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(sid.OutputText);
+                FTPHelper.Instance.RenameFile(new Uri(uri.ToString() + "/" + name), sid.OutputText);
+                name = sid.OutputText;
+                file_name.Text = name;
             }
         }
 
@@ -119,8 +121,16 @@ namespace FTPClient.Controls
             SingleInputDialog sid = new SingleInputDialog("Nový název", "Přejmenovat");
             if(sid.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(sid.OutputText);
+                FTPHelper.Instance.RenameFile(new Uri((uri.ToString() + "/" + name).TrimEnd('/')), sid.OutputText);
+                name = sid.OutputText;
+                file_name.Text = name;
             }
+        }
+
+        private void deleteFolder_btn_Click(object sender, EventArgs e)
+        {
+            FTPHelper.Instance.DeleteFolder(new Uri(uri.ToString() + "/" + name));
+            Dispose();
         }
     }
 }

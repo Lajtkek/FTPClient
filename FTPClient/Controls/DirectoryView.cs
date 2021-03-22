@@ -1,4 +1,5 @@
 ﻿using FTPClient.Common;
+using FTPClient.Dialog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -92,6 +93,12 @@ namespace FTPClient.Controls
         private void dirCreate_btn_Click(object sender, EventArgs e)
         {
 
+            SingleInputDialog sid = new SingleInputDialog("Vytvočit adredíš", "Nazev");
+            if (sid.ShowDialog() == DialogResult.OK)
+            {
+                FTPHelper.Instance.CreateDirectory(root, sid.OutputText);
+                RefreshDirectory();
+            }
         }
     }
 }
