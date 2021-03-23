@@ -21,6 +21,7 @@ namespace FTPClient.Controls
 
         public event Action closed;
 
+        LoadingOverlay lo;
         public DirectoryView()
         {
             InitializeComponent();
@@ -78,7 +79,7 @@ namespace FTPClient.Controls
             {
                 Show();
             };
-            
+
             Hide();
         }
 
@@ -95,13 +96,32 @@ namespace FTPClient.Controls
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                    LoadStart();
                     var filePath = openFileDialog.FileName;
 
-                    await FTPHelper.Instance.UploadFileToFtp(root,filePath);
-                    
+                    await FTPHelper.Instance.UploadFileToFtp(root, filePath);
+
                     RefreshDirectory();
+                    LoadEnd();
                 }
             }
+        }
+
+        private void LoadStart()
+        {
+            if (lo != null) lo.Dispose();
+
+            lo = new LoadingOverlay();
+            Controls.Add(lo);
+            lo.BringToFront();
+            panel1.Enabled = false;
+        }
+
+        private void LoadEnd()
+        {
+            if (lo != null)
+            lo.Dispose();
+            panel1.Enabled = true;
         }
 
         private void dirCreate_btn_Click(object sender, EventArgs e)
