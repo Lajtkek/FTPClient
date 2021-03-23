@@ -42,17 +42,20 @@ namespace FTPClient.Controls
 
             //fileMenu.Visible = isDirectory;
             //folder_menu.Visible = !isDirectory;
+            var location = new Point(270, 3);
             if (!isDirectory)
             {
                 fileMenu.Show();
+                fileMenu.Location = location;
                 folder_menu.Hide();
             }
             else
             {
                 fileMenu.Hide();
                 folder_menu.Show();
+                folder_menu.Location = location;
             }
-            Size = new Size(300, 30);
+            Size = new Size(Size.Width,32);
         }
 
         private void DirectoryItem_MouseUp(object sender, MouseEventArgs e)
@@ -65,10 +68,6 @@ namespace FTPClient.Controls
 
         private void Expand_Click(object sender, EventArgs e)
         {
-            if (Size.Height == 30)
-                Size = new Size(300, 100);
-            else
-                Size = new Size(300, 30);
         }
 
         private void delete_btn_Click(object sender, EventArgs e)
@@ -89,7 +88,7 @@ namespace FTPClient.Controls
 
         private void rename_btn_Click(object sender, EventArgs e)
         {
-            SingleInputDialog sid = new SingleInputDialog("Nový název", "Přejmenovat");
+            SingleInputDialog sid = new SingleInputDialog("Přejmenovat soubor", "Nový název", "Přejmenovat");
             if (sid.ShowDialog() == DialogResult.OK)
             {
                 FTPHelper.Instance.RenameFile(new Uri(uri.ToString() + "/" + name), sid.OutputText);
@@ -117,7 +116,7 @@ namespace FTPClient.Controls
 
         private void renameDir_btn_Click(object sender, EventArgs e)
         {
-            SingleInputDialog sid = new SingleInputDialog("Nový název", "Přejmenovat");
+            SingleInputDialog sid = new SingleInputDialog("Přejmenovat složku","Nový název", "Přejmenovat");
             if(sid.ShowDialog() == DialogResult.OK)
             {
                 FTPHelper.Instance.RenameFile(new Uri((uri.ToString() + "/" + name).TrimEnd('/')), sid.OutputText);

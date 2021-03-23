@@ -127,7 +127,7 @@ namespace FTPClient.Controls
         private void dirCreate_btn_Click(object sender, EventArgs e)
         {
 
-            SingleInputDialog sid = new SingleInputDialog("Vytvočit adredíš", "Nazev");
+            SingleInputDialog sid = new SingleInputDialog("Vytvořit adresář", "Název nového adresáře", "Vytvořit");
             if (sid.ShowDialog() == DialogResult.OK)
             {
                 FTPHelper.Instance.CreateDirectory(root, sid.OutputText);

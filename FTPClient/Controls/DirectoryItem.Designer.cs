@@ -31,7 +31,6 @@ namespace FTPClient.Controls
         {
             this.file_name = new System.Windows.Forms.Label();
             this.file_size = new System.Windows.Forms.Label();
-            this.Expand = new System.Windows.Forms.Label();
             this.download_btn = new System.Windows.Forms.Button();
             this.rename_btn = new System.Windows.Forms.Button();
             this.delete_btn = new System.Windows.Forms.Button();
@@ -63,19 +62,9 @@ namespace FTPClient.Controls
             this.file_size.Text = "( 0b )";
             this.file_size.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Expand
-            // 
-            this.Expand.Location = new System.Drawing.Point(274, 0);
-            this.Expand.Name = "Expand";
-            this.Expand.Size = new System.Drawing.Size(26, 30);
-            this.Expand.TabIndex = 2;
-            this.Expand.Text = "▼";
-            this.Expand.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Expand.Click += new System.EventHandler(this.Expand_Click);
-            // 
             // download_btn
             // 
-            this.download_btn.Location = new System.Drawing.Point(10, 36);
+            this.download_btn.Location = new System.Drawing.Point(3, 3);
             this.download_btn.Name = "download_btn";
             this.download_btn.Size = new System.Drawing.Size(75, 23);
             this.download_btn.TabIndex = 3;
@@ -85,7 +74,7 @@ namespace FTPClient.Controls
             // 
             // rename_btn
             // 
-            this.rename_btn.Location = new System.Drawing.Point(92, 36);
+            this.rename_btn.Location = new System.Drawing.Point(84, 3);
             this.rename_btn.Name = "rename_btn";
             this.rename_btn.Size = new System.Drawing.Size(75, 23);
             this.rename_btn.TabIndex = 4;
@@ -95,7 +84,7 @@ namespace FTPClient.Controls
             // 
             // delete_btn
             // 
-            this.delete_btn.Location = new System.Drawing.Point(216, 36);
+            this.delete_btn.Location = new System.Drawing.Point(165, 3);
             this.delete_btn.Name = "delete_btn";
             this.delete_btn.Size = new System.Drawing.Size(75, 23);
             this.delete_btn.TabIndex = 5;
@@ -105,29 +94,29 @@ namespace FTPClient.Controls
             // 
             // fileMenu
             // 
-            this.fileMenu.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.fileMenu.BackColor = System.Drawing.Color.Transparent;
             this.fileMenu.Controls.Add(this.delete_btn);
             this.fileMenu.Controls.Add(this.download_btn);
             this.fileMenu.Controls.Add(this.rename_btn);
-            this.fileMenu.Location = new System.Drawing.Point(3, 33);
+            this.fileMenu.Location = new System.Drawing.Point(272, 33);
             this.fileMenu.Name = "fileMenu";
-            this.fileMenu.Size = new System.Drawing.Size(294, 62);
+            this.fileMenu.Size = new System.Drawing.Size(250, 30);
             this.fileMenu.TabIndex = 6;
             // 
             // folder_menu
             // 
-            this.folder_menu.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.folder_menu.BackColor = System.Drawing.Color.Transparent;
             this.folder_menu.Controls.Add(this.openDir_btn);
             this.folder_menu.Controls.Add(this.deleteFolder_btn);
             this.folder_menu.Controls.Add(this.renameDir_btn);
-            this.folder_menu.Location = new System.Drawing.Point(3, 33);
+            this.folder_menu.Location = new System.Drawing.Point(16, 33);
             this.folder_menu.Name = "folder_menu";
-            this.folder_menu.Size = new System.Drawing.Size(294, 62);
+            this.folder_menu.Size = new System.Drawing.Size(250, 30);
             this.folder_menu.TabIndex = 7;
             // 
             // openDir_btn
             // 
-            this.openDir_btn.Location = new System.Drawing.Point(8, 36);
+            this.openDir_btn.Location = new System.Drawing.Point(3, 3);
             this.openDir_btn.Name = "openDir_btn";
             this.openDir_btn.Size = new System.Drawing.Size(75, 23);
             this.openDir_btn.TabIndex = 6;
@@ -137,7 +126,7 @@ namespace FTPClient.Controls
             // 
             // deleteFolder_btn
             // 
-            this.deleteFolder_btn.Location = new System.Drawing.Point(216, 36);
+            this.deleteFolder_btn.Location = new System.Drawing.Point(165, 3);
             this.deleteFolder_btn.Name = "deleteFolder_btn";
             this.deleteFolder_btn.Size = new System.Drawing.Size(75, 23);
             this.deleteFolder_btn.TabIndex = 5;
@@ -147,7 +136,7 @@ namespace FTPClient.Controls
             // 
             // renameDir_btn
             // 
-            this.renameDir_btn.Location = new System.Drawing.Point(89, 36);
+            this.renameDir_btn.Location = new System.Drawing.Point(84, 3);
             this.renameDir_btn.Name = "renameDir_btn";
             this.renameDir_btn.Size = new System.Drawing.Size(75, 23);
             this.renameDir_btn.TabIndex = 4;
@@ -159,14 +148,13 @@ namespace FTPClient.Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.folder_menu);
             this.Controls.Add(this.fileMenu);
-            this.Controls.Add(this.Expand);
             this.Controls.Add(this.file_size);
             this.Controls.Add(this.file_name);
             this.Name = "DirectoryItem";
-            this.Size = new System.Drawing.Size(305, 102);
+            this.Size = new System.Drawing.Size(525, 70);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DirectoryItem_MouseUp);
             this.fileMenu.ResumeLayout(false);
             this.folder_menu.ResumeLayout(false);
@@ -178,7 +166,6 @@ namespace FTPClient.Controls
 
         private System.Windows.Forms.Label file_name;
         private System.Windows.Forms.Label file_size;
-        private System.Windows.Forms.Label Expand;
         private System.Windows.Forms.Button download_btn;
         private System.Windows.Forms.Button rename_btn;
         private System.Windows.Forms.Button delete_btn;

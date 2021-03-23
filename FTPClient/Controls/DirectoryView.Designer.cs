@@ -30,13 +30,13 @@ namespace FTPClient.Controls
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.dirCreate_btn = new System.Windows.Forms.Button();
             this.back_btn = new System.Windows.Forms.Button();
             this.uploadFile_btn = new System.Windows.Forms.Button();
             this.DirectoryItemHolder = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -44,7 +44,6 @@ namespace FTPClient.Controls
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dirCreate_btn);
             this.panel1.Controls.Add(this.back_btn);
             this.panel1.Controls.Add(this.uploadFile_btn);
@@ -54,9 +53,21 @@ namespace FTPClient.Controls
             this.panel1.Size = new System.Drawing.Size(142, 409);
             this.panel1.TabIndex = 0;
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button1.Location = new System.Drawing.Point(382, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(43, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "<<<";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // dirCreate_btn
             // 
-            this.dirCreate_btn.Location = new System.Drawing.Point(6, 51);
+            this.dirCreate_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dirCreate_btn.Location = new System.Drawing.Point(6, 361);
             this.dirCreate_btn.Name = "dirCreate_btn";
             this.dirCreate_btn.Size = new System.Drawing.Size(133, 42);
             this.dirCreate_btn.TabIndex = 1;
@@ -66,17 +77,18 @@ namespace FTPClient.Controls
             // 
             // back_btn
             // 
-            this.back_btn.Location = new System.Drawing.Point(55, 343);
+            this.back_btn.Location = new System.Drawing.Point(6, 3);
             this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(75, 23);
+            this.back_btn.Size = new System.Drawing.Size(133, 23);
             this.back_btn.TabIndex = 0;
-            this.back_btn.Text = "Bacc";
+            this.back_btn.Text = "O krok dozadu";
             this.back_btn.UseVisualStyleBackColor = true;
             this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
             // uploadFile_btn
             // 
-            this.uploadFile_btn.Location = new System.Drawing.Point(6, 3);
+            this.uploadFile_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.uploadFile_btn.Location = new System.Drawing.Point(6, 313);
             this.uploadFile_btn.Name = "uploadFile_btn";
             this.uploadFile_btn.Size = new System.Drawing.Size(133, 42);
             this.uploadFile_btn.TabIndex = 0;
@@ -105,22 +117,13 @@ namespace FTPClient.Controls
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Info;
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 377);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(431, 32);
             this.panel2.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(55, 372);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Dirr Bacc";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // DirectoryView
             // 

@@ -13,9 +13,10 @@ namespace FTPClient.Dialog
     public partial class SingleInputDialog : Form
     {
         public string OutputText => textBox1.Text;
-        public SingleInputDialog(string title, string confirmText)
+        public SingleInputDialog(string modalTitle,string title, string confirmText)
         {
             InitializeComponent();
+            Text = modalTitle;
             title_lbl.Text = title;
             confitm_btn.Text = confirmText;
         }

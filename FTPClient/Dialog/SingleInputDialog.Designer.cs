@@ -37,7 +37,7 @@ namespace FTPClient.Dialog
             // title_lbl
             // 
             this.title_lbl.AutoSize = true;
-            this.title_lbl.Location = new System.Drawing.Point(12, 9);
+            this.title_lbl.Location = new System.Drawing.Point(12, 10);
             this.title_lbl.Name = "title_lbl";
             this.title_lbl.Size = new System.Drawing.Size(45, 13);
             this.title_lbl.TabIndex = 0;
@@ -45,16 +45,16 @@ namespace FTPClient.Dialog
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 28);
+            this.textBox1.Location = new System.Drawing.Point(12, 26);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(169, 20);
             this.textBox1.TabIndex = 1;
             // 
             // confitm_btn
             // 
-            this.confitm_btn.Location = new System.Drawing.Point(24, 54);
+            this.confitm_btn.Location = new System.Drawing.Point(15, 52);
             this.confitm_btn.Name = "confitm_btn";
-            this.confitm_btn.Size = new System.Drawing.Size(75, 23);
+            this.confitm_btn.Size = new System.Drawing.Size(166, 23);
             this.confitm_btn.TabIndex = 2;
             this.confitm_btn.Text = "confirmBtn";
             this.confitm_btn.UseVisualStyleBackColor = true;
@@ -64,11 +64,11 @@ namespace FTPClient.Dialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(131, 78);
+            this.ClientSize = new System.Drawing.Size(193, 82);
             this.Controls.Add(this.confitm_btn);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.title_lbl);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SingleInputDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jmeno";
