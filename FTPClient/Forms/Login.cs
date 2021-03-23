@@ -1,4 +1,5 @@
 ﻿using FTPClient.Common;
+using FTPClient.Controls;
 using FTPClient.Forms;
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,15 @@ namespace FTPClient
             InitializeComponent();
         }
 
-        private void login_btn_Click(object sender, EventArgs e)
+        private async void login_btn_Click(object sender, EventArgs e)
         {
+            LoadingOverlay lo = new LoadingOverlay();
+            Controls.Add(lo);
+            lo.BringToFront();
             FTPHelper.Instance.SetCredentials(server_txt.Text, username_txt.Text, password_txt.Text);
-            var directoryDetails = FTPHelper.Instance.GetDirectoryDetails(new Uri("ftp://" + server_txt.Text + "/"));
-            if (directoryDetails.Count > 0)
+            
+            var directoryDetails = await FTPHelper.Instance.GetDirectoryDetails(new Uri("ftp://" + server_txt.Text + "/"));
+            if (directoryDetails != null)
             {
                 Client c = new Client(directoryDetails);
                 Hide();
@@ -34,6 +39,7 @@ namespace FTPClient
             {
                 MessageBox.Show("Wrong creds");
             }
+            lo.Dispose();
         }
     }
 }

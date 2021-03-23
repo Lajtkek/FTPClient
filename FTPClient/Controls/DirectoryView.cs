@@ -40,15 +40,14 @@ namespace FTPClient.Controls
 
             label1.Text = this.root.ToString();
 
-
             back_btn.Enabled = !isRoot;
             RefreshDirectory();
         }
 
-        private void RefreshDirectory()
+        private async void RefreshDirectory()
         {
             DirectoryItemHolder.Controls.Clear();
-            var directoryDetails = FTPHelper.Instance.GetDirectoryDetails(root);
+            var directoryDetails = await FTPHelper.Instance.GetDirectoryDetails(root);
             foreach (string item in directoryDetails)
             {
                 var info = item.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);

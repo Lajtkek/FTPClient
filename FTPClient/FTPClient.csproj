@@ -94,6 +94,12 @@
     <Compile Include="Controls\DirectoryItem.Designer.cs">
       <DependentUpon>DirectoryItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LoadingOverlay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LoadingOverlay.Designer.cs">
+      <DependentUpon>LoadingOverlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\SingleInputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     <EmbeddedResource Include="Controls\DirectoryView.resx">
       <DependentUpon>DirectoryView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LoadingOverlay.resx">
+      <DependentUpon>LoadingOverlay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\SingleInputDialog.resx">
       <DependentUpon>SingleInputDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -135,6 +144,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -148,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desuroll.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

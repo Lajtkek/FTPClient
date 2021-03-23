@@ -25,22 +25,32 @@ namespace FTPClient.Common
             credentials = new NetworkCredential(username, password);
             serverUri = new Uri("ftp://" + server + "/");
         }
-        public List<string> GetDirectoryDetails(Uri directoryUri)
+        public Task<List<string>> GetDirectoryDetails(Uri directoryUri)
         {
-            var request = CreateRequest(WebRequestMethods.Ftp.ListDirectoryDetails, directoryUri);
-
-            using (var response = (FtpWebResponse)request.GetResponse())
+            return Task.Factory.StartNew(() =>
             {
-                using (var responseStream = response.GetResponseStream())
-                {
-                    using (StreamReader reader = new StreamReader(responseStream)) {
-                        string lines = reader.ReadToEnd();
+                var request = CreateRequest(WebRequestMethods.Ftp.ListDirectoryDetails, directoryUri);
 
-                        return lines.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
-                        
+                try
+                {
+                    using (var response = (FtpWebResponse)request.GetResponse())
+                    {
+                        using (var responseStream = response.GetResponseStream())
+                        {
+                            using (StreamReader reader = new StreamReader(responseStream))
+                            {
+                                string lines = reader.ReadToEnd();
+
+                                return lines.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                            }
+                        }
                     }
                 }
-            }
+                catch(Exception e)
+                {
+                    return null;
+                }
+            });
         }
 
         public long GetFileSize(Uri uri)
