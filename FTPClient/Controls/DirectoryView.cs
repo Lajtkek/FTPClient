@@ -1,5 +1,6 @@
 ﻿using FTPClient.Common;
 using FTPClient.Dialog;
+using FTPClient.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,7 @@ namespace FTPClient.Controls
         private Uri root;
 
         public event Action closed;
+
         public DirectoryView()
         {
             InitializeComponent();
@@ -26,16 +28,20 @@ namespace FTPClient.Controls
             this.root = Common.FTPHelper.Instance.serverUri;
 
             label1.Text = this.root.ToString();
+
             RefreshDirectory();
         }
 
-        public DirectoryView(Uri root)
+        public DirectoryView(Uri root, bool isRoot = false)
         {
             InitializeComponent();
 
             this.root = root;
 
             label1.Text = this.root.ToString();
+
+
+            back_btn.Enabled = !isRoot;
             RefreshDirectory();
         }
 
@@ -45,9 +51,14 @@ namespace FTPClient.Controls
             var directoryDetails = FTPHelper.Instance.GetDirectoryDetails(root);
             foreach (string item in directoryDetails)
             {
-                DirectoryItem d = new DirectoryItem(root, item);
+                var info = item.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                var name = info.Last();
 
-                AddDirectoryItem(d);
+                if (name != "." && name != "..")
+                {
+                    DirectoryItem d = new DirectoryItem(root, item);
+                    AddDirectoryItem(d);
+                }
             }
         }
 
@@ -68,6 +79,7 @@ namespace FTPClient.Controls
             {
                 Show();
             };
+            
             Hide();
         }
 
@@ -77,14 +89,17 @@ namespace FTPClient.Controls
             Dispose();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
+
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     var filePath = openFileDialog.FileName;
-                    FTPHelper.Instance.UploadFileToFtp(root,filePath);
+
+                    await FTPHelper.Instance.UploadFileToFtp(root,filePath);
+                    
                     RefreshDirectory();
                 }
             }
@@ -99,6 +114,20 @@ namespace FTPClient.Controls
                 FTPHelper.Instance.CreateDirectory(root, sid.OutputText);
                 RefreshDirectory();
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            DirectoryView dw = new DirectoryView(new Uri(root.ToString() + ".."));
+            dw.Size = Size;
+            dw.Dock = Dock;
+            Parent.Controls.Add(dw);
+            dw.Show();
+            dw.closed += () =>
+            {
+                Show();
+            };
+            Hide();
         }
     }
 }

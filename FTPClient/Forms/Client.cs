@@ -18,7 +18,7 @@ namespace FTPClient.Forms
         {
             InitializeComponent();
 
-            DirectoryView rootView = new DirectoryView(FTPHelper.Instance.serverUri);
+            DirectoryView rootView = new DirectoryView(FTPHelper.Instance.serverUri, true);
             rootView.Dock = DockStyle.Fill;
             Controls.Add(rootView);
         }

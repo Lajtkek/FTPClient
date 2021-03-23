@@ -98,16 +98,15 @@ namespace FTPClient.Controls
             }
         }
 
-        private void download_btn_Click(object sender, EventArgs e)
+        private async void download_btn_Click(object sender, EventArgs e)
         {
-            Stream myStream;
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.FileName = name;
             saveFileDialog1.Filter = "Any (.*)|*.*"; // Filter files by extension
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                FTPHelper.Instance.DownloadFileFTP(new Uri(uri.ToString() + "/" + name), saveFileDialog1.FileName);               
+                await FTPHelper.Instance.DownloadFileFTP(new Uri(uri.ToString() + "/" + name), saveFileDialog1.FileName);               
             }
         }
 

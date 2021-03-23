@@ -30,12 +30,13 @@ namespace FTPClient.Controls
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dirCreate_btn = new System.Windows.Forms.Button();
             this.back_btn = new System.Windows.Forms.Button();
             this.uploadFile_btn = new System.Windows.Forms.Button();
             this.DirectoryItemHolder = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dirCreate_btn = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -43,6 +44,7 @@ namespace FTPClient.Controls
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dirCreate_btn);
             this.panel1.Controls.Add(this.back_btn);
             this.panel1.Controls.Add(this.uploadFile_btn);
@@ -52,9 +54,19 @@ namespace FTPClient.Controls
             this.panel1.Size = new System.Drawing.Size(142, 409);
             this.panel1.TabIndex = 0;
             // 
+            // dirCreate_btn
+            // 
+            this.dirCreate_btn.Location = new System.Drawing.Point(6, 51);
+            this.dirCreate_btn.Name = "dirCreate_btn";
+            this.dirCreate_btn.Size = new System.Drawing.Size(133, 42);
+            this.dirCreate_btn.TabIndex = 1;
+            this.dirCreate_btn.Text = "Vytvořit adresář";
+            this.dirCreate_btn.UseVisualStyleBackColor = true;
+            this.dirCreate_btn.Click += new System.EventHandler(this.dirCreate_btn_Click);
+            // 
             // back_btn
             // 
-            this.back_btn.Location = new System.Drawing.Point(55, 377);
+            this.back_btn.Location = new System.Drawing.Point(55, 343);
             this.back_btn.Name = "back_btn";
             this.back_btn.Size = new System.Drawing.Size(75, 23);
             this.back_btn.TabIndex = 0;
@@ -100,15 +112,15 @@ namespace FTPClient.Controls
             this.panel2.Size = new System.Drawing.Size(431, 32);
             this.panel2.TabIndex = 2;
             // 
-            // dirCreate_btn
+            // button1
             // 
-            this.dirCreate_btn.Location = new System.Drawing.Point(6, 51);
-            this.dirCreate_btn.Name = "dirCreate_btn";
-            this.dirCreate_btn.Size = new System.Drawing.Size(133, 42);
-            this.dirCreate_btn.TabIndex = 1;
-            this.dirCreate_btn.Text = "Vytvořit adresář";
-            this.dirCreate_btn.UseVisualStyleBackColor = true;
-            this.dirCreate_btn.Click += new System.EventHandler(this.dirCreate_btn_Click);
+            this.button1.Location = new System.Drawing.Point(55, 372);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Dirr Bacc";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // DirectoryView
             // 
@@ -135,5 +147,6 @@ namespace FTPClient.Controls
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button back_btn;
         private System.Windows.Forms.Button dirCreate_btn;
+        private System.Windows.Forms.Button button1;
     }
 }

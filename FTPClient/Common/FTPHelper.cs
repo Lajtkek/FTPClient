@@ -63,26 +63,29 @@ namespace FTPClient.Common
         }
 
 
-        public void UploadFileToFtp(Uri uri, string filePath)
+        public Task UploadFileToFtp(Uri uri, string filePath)
         {
-            var fileName = System.IO.Path.GetFileName(filePath);
-            var request = CreateRequest(WebRequestMethods.Ftp.UploadFile,new Uri(uri.ToString() + "/" + fileName));
-
-            request.UsePassive = true;
-            request.UseBinary = true;
-            request.KeepAlive = false;
-
-            using (var fileStream = File.OpenRead(filePath))
+            return Task.Factory.StartNew(() =>
             {
-                using (var requestStream = request.GetRequestStream())
-                {
-                    fileStream.CopyTo(requestStream);
-                    requestStream.Close();
-                }
-            }
+                var fileName = System.IO.Path.GetFileName(filePath);
+                var request = CreateRequest(WebRequestMethods.Ftp.UploadFile, new Uri(uri.ToString() + "/" + fileName));
 
-            var response = (FtpWebResponse)request.GetResponse();
-            response.Close();
+                request.UsePassive = true;
+                request.UseBinary = true;
+                request.KeepAlive = false;
+
+                using (var fileStream = File.OpenRead(filePath))
+                {
+                    using (var requestStream = request.GetRequestStream())
+                    {
+                        fileStream.CopyTo(requestStream);
+                        requestStream.Close();
+                    }
+                }
+
+                var response = (FtpWebResponse)request.GetResponse();
+                response.Close();
+            });
         }
 
         public void RenameFile(Uri uri, string newName)
@@ -104,23 +107,25 @@ namespace FTPClient.Common
             response.Close();
         }
 
-        public void DownloadFileFTP(Uri fileUri, string downloadPath)
+        public Task DownloadFileFTP(Uri fileUri, string downloadPath)
         {
-            //downloadPath = System.IO.Path.GetDirectoryName(downloadPath);
-            var request = CreateRequest(WebRequestMethods.Ftp.DownloadFile, fileUri);
-
-            var filename = System.IO.Path.GetFileName(fileUri.LocalPath);
-
-            using (Stream ftpStream = request.GetResponse().GetResponseStream())
-            using (Stream fileStream = File.Create(downloadPath))
+            return Task.Factory.StartNew(() =>
             {
-                byte[] buffer = new byte[10240];
-                int read;
-                while ((read = ftpStream.Read(buffer, 0, buffer.Length)) > 0)
+                var request = CreateRequest(WebRequestMethods.Ftp.DownloadFile, fileUri);
+
+                var filename = System.IO.Path.GetFileName(fileUri.LocalPath);
+
+                using (Stream ftpStream = request.GetResponse().GetResponseStream())
+                using (Stream fileStream = File.Create(downloadPath))
                 {
-                    fileStream.Write(buffer, 0, read);
+                    byte[] buffer = new byte[10240];
+                    int read;
+                    while ((read = ftpStream.Read(buffer, 0, buffer.Length)) > 0)
+                    {
+                        fileStream.Write(buffer, 0, read);
+                    }
                 }
-            }
+            });
         }
 
         public void CreateDirectory(Uri uri, string name)
