@@ -12,19 +12,27 @@ namespace FTPClient.Common
     {
         public static FTPHelper Instance = new FTPHelper();
 
-        public Uri serverUri;
+        private Uri rootUri;
+        public Uri RootUri => rootUri;
         private NetworkCredential credentials;
-        public NetworkCredential Credentials => credentials;
+
+        // Protože tato třída slouží jako jedináček
         private FTPHelper()
         {
 
         }
 
+        /// <summary>
+        /// Nastaví uživatelské jméno, heslo, a root server
+        /// <example>
         public void SetCredentials(string server, string username, string password)
         {
             credentials = new NetworkCredential(username, password);
-            serverUri = new Uri("ftp://" + server + "/");
+            // Získám root složku FTP serveru
+            var serverString = server.Split('/');
+            rootUri = new Uri("ftp://" + serverString[0]);
         }
+
         public Task<List<string>> GetDirectoryDetails(Uri directoryUri)
         {
             return Task.Factory.StartNew(() =>
@@ -162,7 +170,7 @@ namespace FTPClient.Common
         {
             //Todo check if valid metod (možná idk)
 
-            var request = (FtpWebRequest)WebRequest.Create(serverUri);
+            var request = (FtpWebRequest)WebRequest.Create(rootUri);
             request.Method = method;
             request.Credentials = credentials;
 

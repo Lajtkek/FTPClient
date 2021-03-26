@@ -21,5 +21,17 @@ namespace FTPClient.Common
 
             return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
         }
+
+        public static Uri RemoveLastSegment(Uri uri)
+        {
+            var noLastSegment = string.Format("{0}://{1}", uri.Scheme, uri.Authority);
+
+            for (int i = 0; i < uri.Segments.Length - 1; i++)
+            {
+                noLastSegment += uri.Segments[i];
+            }
+
+            return new Uri(noLastSegment.Trim("/".ToCharArray()));
+        }
     }
 }

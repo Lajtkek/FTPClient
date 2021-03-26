@@ -30,10 +30,10 @@ namespace FTPClient.Controls
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.dirCreate_btn = new System.Windows.Forms.Button();
             this.back_btn = new System.Windows.Forms.Button();
             this.uploadFile_btn = new System.Windows.Forms.Button();
+            this.prevDirectory_btn = new System.Windows.Forms.Button();
             this.DirectoryItemHolder = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -52,17 +52,6 @@ namespace FTPClient.Controls
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(142, 409);
             this.panel1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(382, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(43, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "<<<";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // dirCreate_btn
             // 
@@ -96,6 +85,17 @@ namespace FTPClient.Controls
             this.uploadFile_btn.UseVisualStyleBackColor = true;
             this.uploadFile_btn.Click += new System.EventHandler(this.button1_Click);
             // 
+            // prevDirectory_btn
+            // 
+            this.prevDirectory_btn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.prevDirectory_btn.Location = new System.Drawing.Point(382, 5);
+            this.prevDirectory_btn.Name = "prevDirectory_btn";
+            this.prevDirectory_btn.Size = new System.Drawing.Size(43, 23);
+            this.prevDirectory_btn.TabIndex = 2;
+            this.prevDirectory_btn.Text = "<<<";
+            this.prevDirectory_btn.UseVisualStyleBackColor = true;
+            this.prevDirectory_btn.Click += new System.EventHandler(this.prevDirectory_btn_Click);
+            // 
             // DirectoryItemHolder
             // 
             this.DirectoryItemHolder.AutoScroll = true;
@@ -117,7 +117,7 @@ namespace FTPClient.Controls
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Info;
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.prevDirectory_btn);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 377);
@@ -150,6 +150,6 @@ namespace FTPClient.Controls
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button back_btn;
         private System.Windows.Forms.Button dirCreate_btn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button prevDirectory_btn;
     }
 }

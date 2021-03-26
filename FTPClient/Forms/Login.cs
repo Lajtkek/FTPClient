@@ -27,7 +27,7 @@ namespace FTPClient
             lo.BringToFront();
             FTPHelper.Instance.SetCredentials(server_txt.Text, username_txt.Text, password_txt.Text);
             
-            var directoryDetails = await FTPHelper.Instance.GetDirectoryDetails(new Uri("ftp://" + server_txt.Text + "/"));
+            var directoryDetails = await FTPHelper.Instance.GetDirectoryDetails(new Uri("ftp://" + server_txt.Text));
             if (directoryDetails != null)
             {
                 Client c = new Client(directoryDetails);

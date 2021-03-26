@@ -111,7 +111,7 @@ namespace FTPClient.Controls
 
         private void openDir_btn_Click(object sender, EventArgs e)
         {
-            openDirRequest?.Invoke(new Uri(this.uri.ToString()  + "/" + name));
+            openDirRequest?.Invoke(new Uri(uri.ToString()  + "/" + name));
         }
 
         private void renameDir_btn_Click(object sender, EventArgs e)
