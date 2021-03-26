@@ -91,9 +91,11 @@ namespace FTPClient.Controls
             SingleInputDialog sid = new SingleInputDialog("Přejmenovat soubor", "Nový název", "Přejmenovat");
             if (sid.ShowDialog() == DialogResult.OK)
             {
-                FTPHelper.Instance.RenameFile(new Uri(uri.ToString() + "/" + name), sid.OutputText);
-                name = sid.OutputText;
-                file_name.Text = name;
+                if (FTPHelper.Instance.RenameFile(new Uri(uri.ToString() + "/" + name), sid.OutputText)){
+                    name = sid.OutputText;
+                    file_name.Text = name;
+                } else
+                    MessageBox.Show("Něco se pokazilo, asi nemáte práva");
             }
         }
 
@@ -119,16 +121,21 @@ namespace FTPClient.Controls
             SingleInputDialog sid = new SingleInputDialog("Přejmenovat složku","Nový název", "Přejmenovat");
             if(sid.ShowDialog() == DialogResult.OK)
             {
-                FTPHelper.Instance.RenameFile(new Uri((uri.ToString() + "/" + name).TrimEnd('/')), sid.OutputText);
-                name = sid.OutputText;
-                file_name.Text = name;
+                if (FTPHelper.Instance.RenameFile(new Uri((uri.ToString() + "/" + name).TrimEnd('/')), sid.OutputText))
+                {
+                    name = sid.OutputText;
+                    file_name.Text = name;
+                }else
+                    MessageBox.Show("Něco se pokazilo, asi nemáte práva");
             }
         }
 
         private void deleteFolder_btn_Click(object sender, EventArgs e)
         {
-            FTPHelper.Instance.DeleteFolder(new Uri(uri.ToString() + "/" + name));
-            Dispose();
+            if (FTPHelper.Instance.DeleteFolder(new Uri(uri.ToString() + "/" + name)))
+                Dispose();
+            else
+                MessageBox.Show("Něco se nepovedlo. \nMožná nemáte práva nebo není adresář prázdný.");
         }
     }
 }

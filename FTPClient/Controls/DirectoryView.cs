@@ -85,9 +85,8 @@ namespace FTPClient.Controls
             Dispose();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void uploadFile_btn_Click(object sender, EventArgs e)
         {
-
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -111,6 +110,7 @@ namespace FTPClient.Controls
             Controls.Add(lo);
             lo.BringToFront();
             panel1.Enabled = false;
+            prevDirectory_btn.Enabled = false;
         }
 
         private void LoadEnd()
@@ -118,6 +118,7 @@ namespace FTPClient.Controls
             if (lo != null)
             lo.Dispose();
             panel1.Enabled = true;
+            prevDirectory_btn.Enabled = true;
         }
 
         private void dirCreate_btn_Click(object sender, EventArgs e)
@@ -126,8 +127,10 @@ namespace FTPClient.Controls
             SingleInputDialog sid = new SingleInputDialog("Vytvořit adresář", "Název nového adresáře", "Vytvořit");
             if (sid.ShowDialog() == DialogResult.OK)
             {
-                FTPHelper.Instance.CreateDirectory(directoryRoot, sid.OutputText);
-                RefreshDirectory();
+                if (FTPHelper.Instance.CreateDirectory(directoryRoot, sid.OutputText))
+                    RefreshDirectory();
+                else
+                    MessageBox.Show("Pravděpodobně nemáte práva pro tento adresář.");
             }
         }
 

@@ -33,6 +33,9 @@ namespace FTPClient.Common
             rootUri = new Uri("ftp://" + serverString[0]);
         }
 
+        /// <summary>
+        /// Získá info o souborech v adresíři
+        /// <example>
         public Task<List<string>> GetDirectoryDetails(Uri directoryUri)
         {
             return Task.Factory.StartNew(() =>
@@ -48,7 +51,6 @@ namespace FTPClient.Common
                             using (StreamReader reader = new StreamReader(responseStream))
                             {
                                 string lines = reader.ReadToEnd();
-
                                 return lines.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
                             }
                         }
@@ -63,29 +65,17 @@ namespace FTPClient.Common
 
         public long GetFileSize(Uri uri)
         {
-            //try
-            //{
-            //    var a = uri;
-            //    var request = CreateRequest(WebRequestMethods.Ftp.GetFileSize);
-
-            //    FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-            //    long size = response.ContentLength;
-            //    response.Close();
-            //    return size;
-            //}
-            //catch (Exception e)
-            //{
-            //    return 0;
-            //}
             return 0;
         }
 
-
+        /// <summary>
+        /// Nahraje soubor na FTP server
+        /// <example>
         public Task UploadFileToFtp(Uri uri, string filePath)
         {
             return Task.Factory.StartNew(() =>
             {
-                var fileName = System.IO.Path.GetFileName(filePath);
+                var fileName = Path.GetFileName(filePath);
                 var request = CreateRequest(WebRequestMethods.Ftp.UploadFile, new Uri(uri.ToString() + "/" + fileName));
 
                 request.UsePassive = true;
@@ -106,14 +96,20 @@ namespace FTPClient.Common
             });
         }
 
-        public void RenameFile(Uri uri, string newName)
+        public bool RenameFile(Uri uri, string newName)
         {
             FtpWebRequest ftp = CreateRequest(WebRequestMethods.Ftp.Rename, uri);
-            //ftp.Method = WebRequestMethods.Ftp.Rename;
-
             ftp.RenameTo = newName;
 
-            FtpWebResponse r = (FtpWebResponse)ftp.GetResponse();
+            try
+            {
+                ftp.GetResponse();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public void DeleteFileFromFtp(Uri uri)
@@ -146,24 +142,34 @@ namespace FTPClient.Common
             });
         }
 
-        public void CreateDirectory(Uri uri, string name)
+        public bool CreateDirectory(Uri uri, string name)
         {
             WebRequest request = CreateRequest(WebRequestMethods.Ftp.MakeDirectory, new Uri(uri.ToString() + "/" + name));
 
-            using (var resp = (FtpWebResponse)request.GetResponse())
+            try
             {
-               
+                var resp = (FtpWebResponse)request.GetResponse();
+                return true;
             }
+            catch (Exception e)
+            {
+                return false;
+            };
         }
 
-        public void DeleteFolder(Uri uri)
+        public bool DeleteFolder(Uri uri)
         {
             WebRequest request = CreateRequest(WebRequestMethods.Ftp.RemoveDirectory, uri);
 
-            using (var resp = (FtpWebResponse)request.GetResponse())
+            try
             {
-
+                var resp = (FtpWebResponse)request.GetResponse();
+                return true;
             }
+            catch (Exception e)
+            {
+                return false;
+            };
         }
 
         public FtpWebRequest CreateRequest(string method)

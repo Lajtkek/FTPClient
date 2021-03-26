@@ -22,15 +22,15 @@ namespace FTPClient
 
         private async void login_btn_Click(object sender, EventArgs e)
         {
-            LoadingOverlay lo = new LoadingOverlay();
-            Controls.Add(lo);
-            lo.BringToFront();
+            LoadingOverlay loadingOverlay = new LoadingOverlay();
+            Controls.Add(loadingOverlay);
+            loadingOverlay.BringToFront();
             FTPHelper.Instance.SetCredentials(server_txt.Text, username_txt.Text, password_txt.Text);
             
             var directoryDetails = await FTPHelper.Instance.GetDirectoryDetails(new Uri("ftp://" + server_txt.Text));
             if (directoryDetails != null)
             {
-                Client c = new Client(directoryDetails);
+                Client c = new Client();
                 Hide();
                 c.ShowDialog();
                 Close();
@@ -39,7 +39,8 @@ namespace FTPClient
             {
                 MessageBox.Show("Wrong creds");
             }
-            lo.Dispose();
+
+            loadingOverlay.Dispose();
         }
     }
 }

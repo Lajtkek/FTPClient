@@ -14,7 +14,7 @@ namespace FTPClient.Forms
 {
     public partial class Client : Form
     {
-        public Client(List<string> directoryDetails)
+        public Client()
         {
             InitializeComponent();
 

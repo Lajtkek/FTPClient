@@ -22,6 +22,8 @@ namespace FTPClient.Common
             return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
         }
 
+
+        //https://stackoverflow.com/questions/11529326/remove-last-segment-of-request-url
         public static Uri RemoveLastSegment(Uri uri)
         {
             var noLastSegment = string.Format("{0}://{1}", uri.Scheme, uri.Authority);

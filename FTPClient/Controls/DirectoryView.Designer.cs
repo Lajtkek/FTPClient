@@ -83,7 +83,7 @@ namespace FTPClient.Controls
             this.uploadFile_btn.TabIndex = 0;
             this.uploadFile_btn.Text = "Nahrát soubor";
             this.uploadFile_btn.UseVisualStyleBackColor = true;
-            this.uploadFile_btn.Click += new System.EventHandler(this.button1_Click);
+            this.uploadFile_btn.Click += new System.EventHandler(this.uploadFile_btn_Click);
             // 
             // prevDirectory_btn
             // 
