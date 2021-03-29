@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FTPClient.Common
@@ -67,7 +66,7 @@ namespace FTPClient.Common
         /// Nahraje soubor na FTP server. Task aby to bylo async protože jinak by
         /// zamrzávala apka a iprogress na report progresu
         /// <example>
-        public Task UploadFileToFtp(Uri uri, string filePath, IProgress<int> progress)
+        public Task<bool> UploadFileToFtp(Uri uri, string filePath, IProgress<int> progress)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -78,30 +77,38 @@ namespace FTPClient.Common
                 request.UseBinary = true;
                 request.KeepAlive = false;
 
-                using (var fileStream = File.OpenRead(filePath))
+                try
                 {
-                    using (var requestStream = request.GetRequestStream())
+                    using (var fileStream = File.OpenRead(filePath))
                     {
-                        int buffLength = 2048;
-                        byte[] buff = new byte[buffLength];
-
-                        long contentLen = fileStream.Read(buff, 0, buffLength);
-                        long totalFileSize = fileStream.Length;
-                        long totalUploaded = 0;
-                        while (contentLen != 0)
+                        using (var requestStream = request.GetRequestStream())
                         {
-                            requestStream.Write(buff, 0, (int) contentLen);
-                            contentLen = fileStream.Read(buff, 0, buffLength);
-                            totalUploaded += contentLen;
-                            int progressValue = (int) (((float) totalUploaded / (float)totalFileSize) * 100f);
+                            int buffLength = 2048;
+                            byte[] buff = new byte[buffLength];
 
-                            progress?.Report(Convert.ToInt32(progressValue));
+                            long contentLen = fileStream.Read(buff, 0, buffLength);
+                            long totalFileSize = fileStream.Length;
+                            long totalUploaded = 0;
+                            while (contentLen != 0)
+                            {
+                                requestStream.Write(buff, 0, (int)contentLen);
+                                contentLen = fileStream.Read(buff, 0, buffLength);
+                                totalUploaded += contentLen;
+                                int progressValue = (int)(((float)totalUploaded / (float)totalFileSize) * 100f);
+
+                                progress?.Report(Convert.ToInt32(progressValue));
+                            }
                         }
                     }
-                }
 
-                var response = (FtpWebResponse)request.GetResponse();
-                response.Close();
+                    var response = (FtpWebResponse)request.GetResponse();
+                    response.Close();
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    return false;
+                };
             });
         }
 
@@ -144,6 +151,9 @@ namespace FTPClient.Common
             }
         }
 
+        /// <summary>
+        /// Získá velikost souboru
+        /// <example>
         public long GetFileSize(Uri fileUri)
         {
             FtpWebRequest request = CreateRequest(WebRequestMethods.Ftp.GetFileSize, fileUri);
@@ -157,6 +167,9 @@ namespace FTPClient.Common
             return size;
         }
 
+        /// <summary>
+        /// Stáhne soubor
+        /// <example>
         public Task<bool> DownloadFileFTP(Uri fileUri, string downloadPath, IProgress<int> progress)
         {
             return Task.Factory.StartNew(() =>
@@ -195,6 +208,9 @@ namespace FTPClient.Common
             });
         }
 
+        /// <summary>
+        /// Vytvoří adresář
+        /// <example>
         public bool CreateDirectory(Uri uri, string name)
         {
             WebRequest request = CreateRequest(WebRequestMethods.Ftp.MakeDirectory, new Uri(uri.ToString() + "/" + name));
@@ -210,6 +226,9 @@ namespace FTPClient.Common
             };
         }
 
+        /// <summary>
+        /// Smaže adresář
+        /// <example>
         public bool DeleteFolder(Uri uri)
         {
             WebRequest request = CreateRequest(WebRequestMethods.Ftp.RemoveDirectory, uri);
@@ -227,8 +246,6 @@ namespace FTPClient.Common
 
         public FtpWebRequest CreateRequest(string method)
         {
-            //Todo check if valid metod (možná idk)
-
             var request = (FtpWebRequest)WebRequest.Create(rootUri);
             request.Method = method;
             request.Credentials = credentials;
@@ -238,8 +255,6 @@ namespace FTPClient.Common
 
         public FtpWebRequest CreateRequest(string method, Uri uri)
         {
-            //Todo check if valid metod (možná idk)
-
             var request = (FtpWebRequest)WebRequest.Create(uri);
             request.Method = method;
             request.Credentials = credentials;

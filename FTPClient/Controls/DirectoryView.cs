@@ -1,16 +1,7 @@
 ﻿using FTPClient.Common;
 using FTPClient.Dialog;
-using FTPClient.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FTPClient.Controls
@@ -99,7 +90,8 @@ namespace FTPClient.Controls
 
                     var progressReporter = new Progress<int>();
                     progressReporter.ProgressChanged += (obj, progress) => { lo.SetProgress(progress); };
-                    await FTPHelper.Instance.UploadFileToFtp(directoryRoot, filePath, progressReporter);
+                    if (!await FTPHelper.Instance.UploadFileToFtp(directoryRoot, filePath, progressReporter))
+                        MessageBox.Show("Něco se pokazilo, asi nemáte práva");
 
                     RefreshDirectory();
                     LoadEnd();
