@@ -62,6 +62,9 @@ namespace FTPClient.Controls
         {
             DirectoryItemHolder.Controls.Add(d);
             d.openDirRequest += OpenDir;
+            d.DownloadingStarted += () => LoadStart(true);
+            d.DownloadingProgress += (progressValue) => lo.SetProgress(progressValue);
+            d.DownloadingEnded += LoadEnd;
         }
 
         public void OpenDir(Uri u)
@@ -91,10 +94,12 @@ namespace FTPClient.Controls
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    LoadStart();
+                    LoadStart(true);
                     var filePath = openFileDialog.FileName;
 
-                    await FTPHelper.Instance.UploadFileToFtp(directoryRoot, filePath);
+                    var progressReporter = new Progress<int>();
+                    progressReporter.ProgressChanged += (obj, progress) => { lo.SetProgress(progress); };
+                    await FTPHelper.Instance.UploadFileToFtp(directoryRoot, filePath, progressReporter);
 
                     RefreshDirectory();
                     LoadEnd();
@@ -102,11 +107,11 @@ namespace FTPClient.Controls
             }
         }
 
-        private void LoadStart()
+        private void LoadStart(bool progressBar = false)
         {
             if (lo != null) lo.Dispose();
 
-            lo = new LoadingOverlay();
+            lo = new LoadingOverlay(progressBar);
             Controls.Add(lo);
             lo.BringToFront();
             panel1.Enabled = false;

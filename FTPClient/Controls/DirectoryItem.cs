@@ -21,7 +21,9 @@ namespace FTPClient.Controls
         private bool isDirectory;
 
         public event Action<Uri> openDirRequest;
-
+        public event Action DownloadingStarted;
+        public event Action<int> DownloadingProgress;
+        public event Action DownloadingEnded;
         public DirectoryItem(Uri baseUri, string directoryLine)
         {
             InitializeComponent();
@@ -40,8 +42,6 @@ namespace FTPClient.Controls
             else
                 file_size.Text = Helper.FormatBytes(size);
 
-            //fileMenu.Visible = isDirectory;
-            //folder_menu.Visible = !isDirectory;
             var location = new Point(270, 3);
             if (!isDirectory)
             {
@@ -58,18 +58,6 @@ namespace FTPClient.Controls
             Size = new Size(Size.Width,32);
         }
 
-        private void DirectoryItem_MouseUp(object sender, MouseEventArgs e)
-        {
-            //if(e.Button == MouseButtons.Left)
-            //{
-            // TODO: REMOVE
-            //}
-        }
-
-        private void Expand_Click(object sender, EventArgs e)
-        {
-        }
-
         private void delete_btn_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
@@ -77,8 +65,10 @@ namespace FTPClient.Controls
                                      MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                FTPHelper.Instance.DeleteFileFromFtp(new Uri(uri.ToString() + "/" + name));
-                Dispose();
+                if (FTPHelper.Instance.DeleteFileFromFtp(new Uri(uri.ToString() + "/" + name)))
+                    Dispose();
+                else
+                    MessageBox.Show("Něco se pokazilo, asi nemáte práva");
             }
             else
             {
@@ -107,7 +97,20 @@ namespace FTPClient.Controls
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                await FTPHelper.Instance.DownloadFileFTP(new Uri(uri.ToString() + "/" + name), saveFileDialog1.FileName);               
+
+                DownloadingStarted?.Invoke();
+
+                var progressReporter = new Progress<int>();
+                progressReporter.ProgressChanged += (obj,progress) => { DownloadingProgress(progress); };
+
+
+                if (await FTPHelper.Instance.DownloadFileFTP(new Uri(uri.ToString() + "/" + name), saveFileDialog1.FileName, progressReporter))
+                {
+                    //MessageBox.Show("Soubor byl úspěšně stažený");
+                    DownloadingEnded.Invoke();
+                }
+                else
+                    MessageBox.Show("Něco se pokazilo");
             }
         }
 

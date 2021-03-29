@@ -155,7 +155,6 @@ namespace FTPClient.Controls
             this.Controls.Add(this.file_name);
             this.Name = "DirectoryItem";
             this.Size = new System.Drawing.Size(525, 70);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DirectoryItem_MouseUp);
             this.fileMenu.ResumeLayout(false);
             this.folder_menu.ResumeLayout(false);
             this.ResumeLayout(false);

@@ -31,6 +31,7 @@ namespace FTPClient.Controls
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingOverlay));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,12 +48,21 @@ namespace FTPClient.Controls
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar1.Location = new System.Drawing.Point(0, 349);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(558, 23);
+            this.progressBar1.TabIndex = 1;
+            // 
             // LoadingOverlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "LoadingOverlay";
             this.Size = new System.Drawing.Size(558, 372);
@@ -64,5 +74,6 @@ namespace FTPClient.Controls
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
