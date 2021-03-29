@@ -68,7 +68,7 @@ namespace FTPClient.Controls
             this.download_btn.Name = "download_btn";
             this.download_btn.Size = new System.Drawing.Size(75, 23);
             this.download_btn.TabIndex = 3;
-            this.download_btn.Text = "Download";
+            this.download_btn.Text = "Stáhnout";
             this.download_btn.UseVisualStyleBackColor = true;
             this.download_btn.Click += new System.EventHandler(this.download_btn_Click);
             // 
@@ -78,7 +78,7 @@ namespace FTPClient.Controls
             this.rename_btn.Name = "rename_btn";
             this.rename_btn.Size = new System.Drawing.Size(75, 23);
             this.rename_btn.TabIndex = 4;
-            this.rename_btn.Text = "Rename";
+            this.rename_btn.Text = "Přejmenovat";
             this.rename_btn.UseVisualStyleBackColor = true;
             this.rename_btn.Click += new System.EventHandler(this.rename_btn_Click);
             // 
@@ -88,7 +88,7 @@ namespace FTPClient.Controls
             this.delete_btn.Name = "delete_btn";
             this.delete_btn.Size = new System.Drawing.Size(75, 23);
             this.delete_btn.TabIndex = 5;
-            this.delete_btn.Text = "Delete";
+            this.delete_btn.Text = "Smazat";
             this.delete_btn.UseVisualStyleBackColor = true;
             this.delete_btn.Click += new System.EventHandler(this.delete_btn_Click);
             // 
@@ -120,7 +120,7 @@ namespace FTPClient.Controls
             this.openDir_btn.Name = "openDir_btn";
             this.openDir_btn.Size = new System.Drawing.Size(75, 23);
             this.openDir_btn.TabIndex = 6;
-            this.openDir_btn.Text = "Open";
+            this.openDir_btn.Text = "Otevřít";
             this.openDir_btn.UseVisualStyleBackColor = true;
             this.openDir_btn.Click += new System.EventHandler(this.openDir_btn_Click);
             // 
@@ -130,7 +130,7 @@ namespace FTPClient.Controls
             this.deleteFolder_btn.Name = "deleteFolder_btn";
             this.deleteFolder_btn.Size = new System.Drawing.Size(75, 23);
             this.deleteFolder_btn.TabIndex = 5;
-            this.deleteFolder_btn.Text = "Delete";
+            this.deleteFolder_btn.Text = "Smazat";
             this.deleteFolder_btn.UseVisualStyleBackColor = true;
             this.deleteFolder_btn.Click += new System.EventHandler(this.deleteFolder_btn_Click);
             // 
@@ -140,7 +140,7 @@ namespace FTPClient.Controls
             this.renameDir_btn.Name = "renameDir_btn";
             this.renameDir_btn.Size = new System.Drawing.Size(75, 23);
             this.renameDir_btn.TabIndex = 4;
-            this.renameDir_btn.Text = "Rename";
+            this.renameDir_btn.Text = "Přejmenovat";
             this.renameDir_btn.UseVisualStyleBackColor = true;
             this.renameDir_btn.Click += new System.EventHandler(this.renameDir_btn_Click);
             // 

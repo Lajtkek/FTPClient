@@ -54,8 +54,8 @@ namespace FTPClient.Controls
 
         private void delete_btn_Click(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
-                                     "Confirm Delete!!",
+            var confirmResult = MessageBox.Show("Opravdu si přejete smazat tento soubor?",
+                                     "Potvrzení smazání!!",
                                      MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
@@ -129,10 +129,17 @@ namespace FTPClient.Controls
 
         private void deleteFolder_btn_Click(object sender, EventArgs e)
         {
-            if (FTPHelper.Instance.DeleteFolder(new Uri(uri.ToString() + "/" + name)))
+            var confirmResult = MessageBox.Show("Opravdu si přejete smazat tento soubor?",
+                                     "Potvrzení smazání!!",
+                                     MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.Yes)
+            {
+                if (FTPHelper.Instance.DeleteFolder(new Uri(uri.ToString() + "/" + name)))
                 Dispose();
-            else
-                MessageBox.Show("Něco se nepovedlo. \nMožná nemáte práva nebo není adresář prázdný.");
+                else
+                    MessageBox.Show("Něco se nepovedlo. \nMožná nemáte práva nebo není adresář prázdný.");
+            }
         }
     }
 }
