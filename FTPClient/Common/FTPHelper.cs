@@ -174,18 +174,17 @@ namespace FTPClient.Common
         {
             return Task.Factory.StartNew(() =>
             {
+                //Pokud se nepovede komunikace se serverem vznikne výjimka metoda vrátí false 
+                //a můžu s tím pracovat například ve formu
                 try
                 {
                     long fileSize = GetFileSize(fileUri);
                     var request = CreateRequest(WebRequestMethods.Ftp.DownloadFile, fileUri);
-
                     var filename = Path.GetFileName(fileUri.LocalPath);
-
                     using (var response = request.GetResponse())
                     using (Stream fileStream = File.Create(downloadPath))
                     {
                         Stream ftpStream = response.GetResponseStream();
-
                         long downloaded = 0;
                         byte[] buffer = new byte[10240];
                         int read;
@@ -193,9 +192,8 @@ namespace FTPClient.Common
                         {
                             fileStream.Write(buffer, 0, read);
                             downloaded += buffer.Length;
-
+                            // Pokud potřebuju zobrazit progres tak se progres nahlásí 
                             int progressValue = (int)(((float)downloaded / (float)fileSize) * 100f);
-
                             progress?.Report(Convert.ToInt32(progressValue));
                         }
                     }
