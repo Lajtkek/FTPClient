@@ -37,7 +37,7 @@ namespace FTPClient
             }
             else
             {
-                MessageBox.Show("Wrong creds");
+                MessageBox.Show("Špatné příhlašovací údaje");
             }
 
             loadingOverlay.Dispose();

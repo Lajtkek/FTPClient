@@ -29,6 +29,7 @@ namespace FTPClient
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.username_txt = new System.Windows.Forms.TextBox();
             this.password_txt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -91,7 +92,7 @@ namespace FTPClient
             this.server_txt.Name = "server_txt";
             this.server_txt.Size = new System.Drawing.Size(187, 20);
             this.server_txt.TabIndex = 7;
-            this.server_txt.Text = "slonice.endora.cz/idk.4fan.cz/web/xd";
+            this.server_txt.Text = "slonice.endora.cz";
             // 
             // label3
             // 
@@ -128,6 +129,7 @@ namespace FTPClient
             this.Controls.Add(this.login_btn);
             this.Controls.Add(this.password_txt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Desu FTP Client ";

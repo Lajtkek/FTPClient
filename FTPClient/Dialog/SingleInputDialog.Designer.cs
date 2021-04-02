@@ -29,6 +29,7 @@ namespace FTPClient.Dialog
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SingleInputDialog));
             this.title_lbl = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.confitm_btn = new System.Windows.Forms.Button();
@@ -69,6 +70,7 @@ namespace FTPClient.Dialog
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.title_lbl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SingleInputDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jmeno";
