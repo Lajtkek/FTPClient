@@ -38,6 +38,7 @@ namespace FTPClient
             this.server_txt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +48,7 @@ namespace FTPClient
             this.username_txt.Name = "username_txt";
             this.username_txt.Size = new System.Drawing.Size(187, 20);
             this.username_txt.TabIndex = 0;
-            this.username_txt.Text = "iktftpucet";
+            this.username_txt.Text = "asukamain";
             // 
             // password_txt
             // 
@@ -55,7 +56,7 @@ namespace FTPClient
             this.password_txt.Name = "password_txt";
             this.password_txt.Size = new System.Drawing.Size(187, 20);
             this.password_txt.TabIndex = 1;
-            this.password_txt.Text = "Hibiki123";
+            this.password_txt.Text = "AyyLmao1337";
             this.password_txt.UseSystemPasswordChar = true;
             // 
             // label1
@@ -78,7 +79,7 @@ namespace FTPClient
             // 
             // login_btn
             // 
-            this.login_btn.Location = new System.Drawing.Point(223, 255);
+            this.login_btn.Location = new System.Drawing.Point(223, 290);
             this.login_btn.Name = "login_btn";
             this.login_btn.Size = new System.Drawing.Size(75, 23);
             this.login_btn.TabIndex = 4;
@@ -88,16 +89,16 @@ namespace FTPClient
             // 
             // server_txt
             // 
-            this.server_txt.Location = new System.Drawing.Point(111, 229);
+            this.server_txt.Location = new System.Drawing.Point(115, 266);
             this.server_txt.Name = "server_txt";
             this.server_txt.Size = new System.Drawing.Size(187, 20);
             this.server_txt.TabIndex = 7;
-            this.server_txt.Text = "slonice.endora.cz";
+            this.server_txt.Text = "konik.endora.cz";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 232);
+            this.label3.Location = new System.Drawing.Point(71, 269);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 6;
@@ -114,12 +115,24 @@ namespace FTPClient
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(206, 226);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(92, 17);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "Zobrazit heslo";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(323, 292);
+            this.ClientSize = new System.Drawing.Size(323, 323);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.server_txt);
             this.Controls.Add(this.label3);
@@ -149,6 +162,7 @@ namespace FTPClient
         private System.Windows.Forms.TextBox server_txt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
