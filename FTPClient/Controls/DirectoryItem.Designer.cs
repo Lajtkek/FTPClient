@@ -39,15 +39,19 @@ namespace FTPClient.Controls
             this.openDir_btn = new System.Windows.Forms.Button();
             this.deleteFolder_btn = new System.Windows.Forms.Button();
             this.renameDir_btn = new System.Windows.Forms.Button();
+            this.folderIco = new System.Windows.Forms.PictureBox();
+            this.fileIco = new System.Windows.Forms.PictureBox();
             this.fileMenu.SuspendLayout();
             this.folder_menu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.folderIco)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileIco)).BeginInit();
             this.SuspendLayout();
             // 
             // file_name
             // 
-            this.file_name.Location = new System.Drawing.Point(0, 0);
+            this.file_name.Location = new System.Drawing.Point(36, 0);
             this.file_name.Name = "file_name";
-            this.file_name.Size = new System.Drawing.Size(160, 30);
+            this.file_name.Size = new System.Drawing.Size(124, 30);
             this.file_name.TabIndex = 0;
             this.file_name.Text = "name";
             this.file_name.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -144,11 +148,33 @@ namespace FTPClient.Controls
             this.renameDir_btn.UseVisualStyleBackColor = true;
             this.renameDir_btn.Click += new System.EventHandler(this.renameDir_btn_Click);
             // 
+            // folderIco
+            // 
+            this.folderIco.BackgroundImage = global::FTPClient.Properties.Resources.File;
+            this.folderIco.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.folderIco.Location = new System.Drawing.Point(1, 1);
+            this.folderIco.Name = "folderIco";
+            this.folderIco.Size = new System.Drawing.Size(32, 32);
+            this.folderIco.TabIndex = 9;
+            this.folderIco.TabStop = false;
+            // 
+            // fileIco
+            // 
+            this.fileIco.BackgroundImage = global::FTPClient.Properties.Resources.Folder;
+            this.fileIco.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fileIco.Location = new System.Drawing.Point(1, 1);
+            this.fileIco.Name = "fileIco";
+            this.fileIco.Size = new System.Drawing.Size(32, 32);
+            this.fileIco.TabIndex = 8;
+            this.fileIco.TabStop = false;
+            // 
             // DirectoryItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Controls.Add(this.folderIco);
+            this.Controls.Add(this.fileIco);
             this.Controls.Add(this.folder_menu);
             this.Controls.Add(this.fileMenu);
             this.Controls.Add(this.file_size);
@@ -157,6 +183,8 @@ namespace FTPClient.Controls
             this.Size = new System.Drawing.Size(525, 70);
             this.fileMenu.ResumeLayout(false);
             this.folder_menu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.folderIco)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileIco)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -173,5 +201,7 @@ namespace FTPClient.Controls
         private System.Windows.Forms.Button openDir_btn;
         private System.Windows.Forms.Button deleteFolder_btn;
         private System.Windows.Forms.Button renameDir_btn;
+        private System.Windows.Forms.PictureBox fileIco;
+        private System.Windows.Forms.PictureBox folderIco;
     }
 }

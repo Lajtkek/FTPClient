@@ -42,12 +42,16 @@ namespace FTPClient.Controls
                 fileMenu.Show();
                 fileMenu.Location = location;
                 folder_menu.Hide();
+                fileIco.Show();
+                folderIco.Hide();
             }
             else
             {
                 fileMenu.Hide();
                 folder_menu.Show();
                 folder_menu.Location = location;
+                fileIco.Hide();
+                folderIco.Show();
             }
             Size = new Size(Size.Width,32);
         }
