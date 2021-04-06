@@ -29,6 +29,7 @@ namespace FTPClient.Controls
 
         private async void RefreshDirectory()
         {
+            LoadStart();
             isRootView = directoryRoot.Equals(FTPHelper.Instance.RootUri);
             label1.Text = directoryRoot.ToString();
             back_btn.Enabled = !isRootView;
@@ -47,6 +48,7 @@ namespace FTPClient.Controls
                     AddDirectoryItem(d);
                 }
             }
+            LoadEnd();
         }
 
         public void AddDirectoryItem(DirectoryItem d)
